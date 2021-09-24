@@ -40,19 +40,24 @@
                     </button>
                 </ul>
                 <ul class="navbar-nav ml-auto">
-                    <a href="./login.html"><button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="log">
-                            Login
-                        </button></a>
-                    <p></p>
-                    <a href="./register.html">
-                        <button class="btn btn-outline-success  my-2 my-sm-0" type="submit" id="log">
-                            Register
-                        </button>
-                    </a>
-                    <a href="./login.html"><button class="btn btn-outline-success my-2 my-sm-0" type="submit"
-                            id="logout">
-                            Logout
-                        </button></a>
+                    @guest
+                        <a href="{{ route('login') }}"><button class="btn btn-outline-success my-2 my-sm-0" type="submit"
+                                id="log">
+                                Login
+                            </button></a>
+                        <p></p>
+                        <a href="{{ route('register') }}">
+                            <button class="btn btn-outline-success  my-2 my-sm-0" type="submit" id="log">
+                                Register
+                            </button>
+                        </a>
+                    @endguest
+                    @auth
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: inline-block">
+                            @csrf
+                            <button type="submit" class="btn btn-danger">Log Out</button>
+                        </form>
+                    @endauth
                 </ul>
             </div>
         </div>
