@@ -14,13 +14,13 @@
                                     <input type="text" name="name" class="form-control" id="exampleInputEmail1"
                                         placeholder="Enter name">
                                 </div>
-                                <div class="form-group">
+                                {{-- <div class="form-group">
                                     <label for="exampleInputPassword1">Price</label>
                                     <input type="number" name="price" class="form-control" id="exampleInputPassword1"
                                         placeholder="Price">
-                                </div>
+                                </div> --}}
                                 <button type="submit" class="btn btn-success mr-2">Submit</button>
-                                <button class="btn btn-light">Cancel</button>
+                                <a class="btn btn-light" href="{{ route('menus.index') }}">Cancel</a>
                             </form>
                         </div>
                     </div>

@@ -25,7 +25,7 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $item->name }}</td>
-                                    <td>{{ $item->menu->name }}</td>
+                                    <td>{{ optional($item->menu)->name }}</td>
                                     <td>{{ $item->amount }}</td>
                                     <td>{{ $item->created_at }}</td>
                                     <td>{{ $item->status }}</td>

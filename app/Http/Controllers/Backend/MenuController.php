@@ -58,9 +58,9 @@ class MenuController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Menu $menu)
     {
-        //
+        return view('backend.menus.edit', compact('menu'));
     }
 
     /**
@@ -70,9 +70,10 @@ class MenuController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Menu $menu)
     {
-        //
+        $menu->update($request->all());
+        return redirect()->route('menus.index');
     }
 
     /**
@@ -81,8 +82,9 @@ class MenuController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Menu $menu)
     {
-        //
+        $menu->delete();
+        return redirect()->route('menus.index');
     }
 }

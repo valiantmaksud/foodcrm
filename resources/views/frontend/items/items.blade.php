@@ -7,6 +7,10 @@
     <div class="container mt-4" style="margin-top: 150px !important">
         <h3>Choose your Item</h3>
 
+        @if (session()->has('error'))
+            <span class="text-danger">{{ session()->get('error') }}</span>
+        @endif
+
         @foreach ($menu_items->chunk(3) as $items)
             <div class="row mt-4">
                 @foreach ($items as $menu)
@@ -39,4 +43,25 @@
         @endforeach
 
     </div>
+@endsection
+
+
+@section('js')
+    <script>
+        function cart(object, amount, type) {
+            let qty = parseInt($('#item_quantity').text());
+            if (type == 'decrease') {
+                if (qty > 1) {
+                    qty = qty - 1;
+                }
+            } else {
+                qty = qty + 1
+            }
+            $('#item_quantity').text(qty)
+            amount = amount * qty;
+
+            $(object).closest('.modal-footer').find('.amount').text(amount)
+            $(object).closest('.modal-footer').find('.item_quantity').val(qty)
+        }
+    </script>
 @endsection

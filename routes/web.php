@@ -4,8 +4,10 @@ use App\Http\Controllers\Backend\ItemController;
 use App\Http\Controllers\Backend\MenuController;
 use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Backend\UserController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\Frontend\ItemController as FrontendItemController;
 use App\Http\Controllers\Frontend\MenuController as FrontendMenuController;
+use App\Http\Controllers\Frontend\OrderController as FrontendOrderController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group(['prefix' => 'admin'], function () {
+Route::group(['prefix' => 'admin', 'middleware' => ['auth:admin']], function () {
     Route::view('/', 'backend.master');
 
     Route::resource('menus', MenuController::class);
@@ -37,6 +39,14 @@ Route::group(['as' => 'f.'], function () {
 
     Route::get('menus', [FrontendMenuController::class, 'index'])->name('menus');
     Route::get('items', [FrontendItemController::class, 'index'])->name('items');
+
+    Route::get('carts', [CartController::class, 'index'])->name('carts');
+    Route::post('carts', [CartController::class, 'store'])->name('carts.store');
+    Route::get('carts/{id}/delete', [CartController::class, 'destroy'])->name('carts.destroy');
+
+    Route::resource('orders', FrontendOrderController::class);
+
+    Route::get('profile', [UserController::class, 'profile'])->name('profile')->middleware('auth');
 });
 
 Auth::routes();

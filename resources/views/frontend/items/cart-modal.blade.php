@@ -11,23 +11,31 @@
                 </button>
             </div>
             <div class="modal-body">
-                <center>
+                {{-- <center>
                     <img src="https://www.pikachakula.com/wp-content/uploads/2018/02/Beef-Stew-Ugali-017.jpg"
                         height="150px" alt="" />
-                </center>
+                </center> --}}
             </div>
             <div class="modal-footer">
-                <button class="btn change-cart" id="subtract3">
+                <button class="btn change-cart" onclick="cart(this,`{{ $menu->amount }}`,'decrease')">
                     <i class="fa fa-minus"></i>
                 </button>
-                <p id="quantity3">1</p>
-                <button class="btn change-cart mr-4" id="add3">
+                <p id="item_quantity">1</p>
+                <button class="btn change-cart mr-4" onclick="cart(this, `{{ $menu->amount }}`,'increase')">
                     <i class="fa fa-plus"></i>
                 </button>
-                <p id="price3">{{ $menu->amount }}</p>
-                <button type="button" class="btn align-right githe3" data-dismiss="modal">
-                    Add to cart
-                </button>
+                <p class="amount">{{ $menu->amount }}</p>
+                <form action="{{ route('f.carts') }}" method="POST" style="display: inline">
+                    <input type="hidden" name="item_id" value="{{ $menu->id }}">
+                    <input type="hidden" name="menu_id" value="{{ $menu->menu_id }}">
+                    <input type="hidden" name="amount" value="{{ $menu->amount }}">
+                    <input type="hidden" name="quantity" class="item_quantity" value="1">
+                    @csrf
+
+                    <button type="submit" class="btn align-right">
+                        Add to cart
+                    </button>
+                </form>
             </div>
         </div>
     </div>

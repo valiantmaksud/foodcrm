@@ -32,13 +32,13 @@
             </div>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="pages/forms/basic_elements.html">
+            <a class="nav-link" href="">
                 <i class="menu-icon typcn typcn-shopping-bag"></i>
                 <span class="menu-title">Orders</span>
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="pages/charts/chartjs.html">
+            <a class="nav-link" href="">
                 <i class="menu-icon typcn typcn-th-large-outline"></i>
                 <span class="menu-title">Users</span>
             </a>

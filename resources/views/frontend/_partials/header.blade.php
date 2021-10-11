@@ -30,14 +30,27 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('f.menus') }}">Menu</a>
                     </li>
-                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">
-                        ORDERS <span id="finalOrder">0</span>
-                    </button>
+                    <li class="nav-item">
+                        <a href="{{ route('f.orders.index') }}" class="nav-link">
+                            ORDERS <span id="finalOrder"></span>
+                        </a>
+
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('f.carts') }}" class="nav-link">
+                            Cart's <span id="cart">
+                                @auth
+                                    <sup>({{ auth()->user()->carts->count() }})</sup>
+                                @endauth
+                            </span>
+                        </a>
+                    </li>
+
                 </ul>
                 <ul class="navbar-nav ml-auto">
                     @guest
@@ -53,7 +66,11 @@
                         </a>
                     @endguest
                     @auth
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: inline-block">
+                        <a href="{{ route('f.profile') }}" class="nav-link">
+                            Profile
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                            style="display: inline-block">
                             @csrf
                             <button type="submit" class="btn btn-danger">Log Out</button>
                         </form>
