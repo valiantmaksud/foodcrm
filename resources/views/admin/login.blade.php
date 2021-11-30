@@ -32,22 +32,10 @@
                 <div class="row w-100">
                     <div class="col-lg-4 mx-auto">
                         <div class="auto-form-wrapper">
-
-                            <form action="{{ route('register') }}" method="POST">
+                            <form action="{{ route('admin.handleLogin') }}" method="POST">
                                 @csrf
                                 <div class="form-group">
-                                    <label class="label">Name<sup class="text-danger">*</sup></label>
-                                    <div class="input-group">
-                                        <input type="text" name="name" class="form-control" placeholder="Name">
-                                        <div class="input-group-append">
-                                            <span class="input-group-text">
-                                                <i class="mdi mdi-check-circle-outline"></i>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="label">Email<sup class="text-danger">*</sup></label>
+                                    <label class="label">Email</label>
                                     <div class="input-group">
                                         <input type="text" name="email" class="form-control" placeholder="Email">
                                         <div class="input-group-append">
@@ -58,18 +46,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="label">Mobile<sup class="text-danger">*</sup></label>
-                                    <div class="input-group">
-                                        <input type="text" name="mobile" class="form-control" placeholder="Mobile">
-                                        <div class="input-group-append">
-                                            <span class="input-group-text">
-                                                <i class="mdi mdi-check-circle-outline"></i>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="label">Password<sup class="text-danger">*</sup></label>
+                                    <label class="label">Password</label>
                                     <div class="input-group">
                                         <input type="password" name="password" class="form-control"
                                             placeholder="*********">
@@ -81,7 +58,14 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <button class="btn btn-primary submit-btn btn-block" type="submit">Register</button>
+                                    <button class="btn btn-primary submit-btn btn-block" type="submit">Login</button>
+                                </div>
+                                <div class="form-group d-flex justify-content-between">
+                                    <div class="form-check form-check-flat mt-0">
+                                        <label class="form-check-label">
+                                            <input type="checkbox" class="form-check-input" checked> Keep me signed in
+                                        </label>
+                                    </div>
                                 </div>
 
                             </form>

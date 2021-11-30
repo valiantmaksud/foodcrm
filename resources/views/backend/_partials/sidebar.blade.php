@@ -2,7 +2,7 @@
     <ul class="nav">
 
         <li class="nav-item">
-            <a class="nav-link" href="/admin">
+            <a class="nav-link" href="{{ route('dashboard') }}">
                 <i class="menu-icon typcn typcn-document-text"></i>
                 <span class="menu-title">Dashboard</span>
             </a>
@@ -32,16 +32,27 @@
             </div>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="">
+            <a class="nav-link" href="{{ route('orders.index') }}">
                 <i class="menu-icon typcn typcn-shopping-bag"></i>
                 <span class="menu-title">Orders</span>
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="">
+            <a class="nav-link" href="{{ route('users.index') }}">
                 <i class="menu-icon typcn typcn-th-large-outline"></i>
                 <span class="menu-title">Users</span>
             </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('admin.logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                <i class="menu-icon typcn typcn-th-large-outline"></i>
+                <span class="menu-title">Log Out</span>
+            </a>
+
+            <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
         </li>
 
     </ul>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Order;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -14,7 +15,8 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        $data['orders'] = Order::with('user')->latest()->paginate(25);
+        return view('backend.orders.index', $data);
     }
 
     /**
@@ -46,7 +48,8 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-        //
+        $data['order'] = Order::with('user')->with('details')->find($id);
+        return view('backend.orders.show', $data);
     }
 
     /**
@@ -70,6 +73,14 @@ class OrderController extends Controller
     public function update(Request $request, $id)
     {
         //
+    }
+
+
+
+    public function statusUpdate(Request $request, $id)
+    {
+        Order::find($id)->update($request->only('status'));
+        return redirect()->back();
     }
 
     /**

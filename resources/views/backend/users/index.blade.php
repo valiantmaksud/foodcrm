@@ -4,35 +4,35 @@
         <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Items</h4>
-                    <p class="card-description pull-right">
-                        <a href="{{ route('items.create') }}" class="btn btn-xs btn-info">Add Item</a>
-                    </p>
+                    <h4 class="card-title">Users</h4>
+
                     <table class="table table-bordered">
                         <thead>
                             <tr>
                                 <th>Sl</th>
                                 <th>Name</th>
-                                <th>Menu</th>
-                                <th>Amount</th>
-                                <th>Created At</th>
+                                <th>Mobile</th>
+                                <th>Address</th>
+                                <th>Last Order</th>
                                 <th>Status</th>
+                                <th>Created At</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($items as $item)
+                            @foreach ($users as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $item->name }}</td>
-                                    <td>{{ optional($item->menu)->name }}</td>
-                                    <td>{{ $item->amount }}</td>
-                                    <td>{{ $item->created_at }}</td>
+                                    <td>{{ $item->mobile }}</td>
+                                    <td>{{ $item->address }}</td>
+                                    <td>{{ optional(optional($item->orders)->last())->order_date }}</td>
                                     <td>
                                         <span class="badge badge-{{ $item->status ? 'success' : danger }}">
                                             {{ $item->status ? 'Active' : 'De-active' }}
                                         </span>
                                     </td>
+                                    <td>{{ $item->created_at }}</td>
                                     <td>
                                         <div class="button-group">
                                             <button class="btn btn-xs btn-success">

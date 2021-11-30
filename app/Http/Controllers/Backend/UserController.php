@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -14,7 +15,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $data['users'] = User::with('orders')->latest()->paginate(25);
+        return view('backend.users.index', $data);
     }
 
     /**
@@ -86,5 +88,14 @@ class UserController extends Controller
     public function profile()
     {
         return view('frontend.users.profile');
+    }
+
+    public function profileUpdate(Request $request)
+    {
+        User::find(auth()->id())->update([
+            'mobile'    => $request->mobile,
+            'address'   => $request->address,
+        ]);
+        return redirect()->back()->with('message', 'Profile Updated');
     }
 }
