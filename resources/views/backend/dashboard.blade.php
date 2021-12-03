@@ -60,9 +60,9 @@
                                     <div class="card-body pb-0">
                                         <div class="d-flex justify-content-between">
                                             <h4 class="card-title mb-0">Total Revenue</h4>
-                                            <p class="font-weight-semibold mb-0">+1.37%</p>
+                                            <p class="font-weight-semibold mb-0">0</p>
                                         </div>
-                                        <h3 class="font-weight-medium mb-4">184.42K</h3>
+                                        <h3 class="font-weight-medium mb-4">0</h3>
                                     </div>
                                     <canvas class="mt-n4" height="90" id="total-revenue"></canva>
                                 </div>
@@ -72,9 +72,9 @@
                                     <div class="card-body pb-0">
                                         <div class="d-flex justify-content-between">
                                             <h4 class="card-title mb-0">Transaction</h4>
-                                            <p class="font-weight-semibold mb-0">-2.87%</p>
+                                            <p class="font-weight-semibold mb-0">0</p>
                                         </div>
-                                        <h3 class="font-weight-medium">147.7K</h3>
+                                        <h3 class="font-weight-medium">0</h3>
                                     </div>
                                     <canvas class="mt-n3" height="90" id="total-transaction"></canva>
                                 </div>

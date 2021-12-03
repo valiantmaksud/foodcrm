@@ -13,6 +13,7 @@
                             <tr>
                                 <th>Sl</th>
                                 <th>Name</th>
+                                <th>Image</th>
                                 <th>Total Item</th>
                                 <th>Created At</th>
                                 <th>Status</th>
@@ -24,6 +25,11 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $item->name }}</td>
+                                    <td>
+                                        {{-- @if (file_exists($item->image)) --}}
+                                        <img src="{{ asset($item->image) }}" width="120" height="80" alt="">
+                                        {{-- @endif --}}
+                                    </td>
                                     <td>{{ $item->total_item }}</td>
                                     <td>{{ $item->created_at }}</td>
                                     <td>{{ $item->status }}</td>

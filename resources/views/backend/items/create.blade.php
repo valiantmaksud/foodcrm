@@ -15,6 +15,10 @@
                                         placeholder="Enter name" required>
                                 </div>
                                 <div class="form-group">
+                                    <label for="exampleInputEmail1">Image</label>
+                                    <input type="file" name="image" class="form-control" >
+                                </div>
+                                <div class="form-group">
                                     <label for="exampleInputEmail1">Menu</label>
                                     <select name="menu_id" id="" class="form-control" required>
                                         @foreach ($menus as $item)

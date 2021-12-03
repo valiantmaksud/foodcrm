@@ -2,7 +2,7 @@
     aria-labelledby="foodModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-            <div class="modal-header food-header">
+            <div class="modal-header food-header" style="background-color: rgb(10, 97, 197);color:white">
                 <h5 class="modal-title " id="foodModalCenterTitle">
                     {{ $menu->name }}
                 </h5>

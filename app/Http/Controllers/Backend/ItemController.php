@@ -5,10 +5,13 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\Item;
 use App\Models\Menu;
+use App\Traits\FileSaver;
 use Illuminate\Http\Request;
 
 class ItemController extends Controller
 {
+    use FileSaver;
+
     /**
      * Display a listing of the resource.
      *
@@ -40,7 +43,10 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
-        Item::create($request->all());
+        $item = Item::create($request->except('image'));
+
+        $this->upload_file($request->image, $item, 'image', 'items');
+
         return redirect()->route('items.index');
     }
 
@@ -61,9 +67,10 @@ class ItemController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Item $item)
     {
-        //
+        $menus = Menu::where('status', 1)->get();
+        return view('backend.items.edit', compact('menus', 'item'));
     }
 
     /**
@@ -73,9 +80,14 @@ class ItemController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Item $item)
     {
-        //
+        $item->update($request->except('image'));
+        // dd($request->all());
+
+        $this->upload_file($request->image, $item, 'image', 'items');
+
+        return redirect()->route('items.index');
     }
 
     /**
@@ -84,8 +96,9 @@ class ItemController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Item $item)
     {
-        //
+        $item->delete();
+        return redirect()->route('items.index');
     }
 }

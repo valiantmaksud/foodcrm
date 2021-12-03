@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Menu;
+use App\Traits\FileSaver;
 use Illuminate\Http\Request;
 
 class MenuController extends Controller
 {
+    use FileSaver;
     /**
      * Display a listing of the resource.
      *
@@ -16,6 +18,8 @@ class MenuController extends Controller
     public function index()
     {
         $menus = Menu::withCount('items as total_item')->get();
+
+
         return view('backend.menus.index', compact('menus'));
     }
 
@@ -37,7 +41,10 @@ class MenuController extends Controller
      */
     public function store(Request $request)
     {
-        Menu::create($request->all());
+        $menu = Menu::create($request->only('name'));
+
+        $this->upload_file($request->image, $menu, 'image', 'menus');
+
         return redirect()->route('menus.index');
     }
 
@@ -72,7 +79,12 @@ class MenuController extends Controller
      */
     public function update(Request $request, Menu $menu)
     {
-        $menu->update($request->all());
+        // dd($request->all());
+
+
+        $menu->update($request->only('name'));
+        $this->upload_file($request->image, $menu, 'image', 'menus');
+
         return redirect()->route('menus.index');
     }
 
