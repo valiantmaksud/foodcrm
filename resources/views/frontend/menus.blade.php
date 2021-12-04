@@ -14,7 +14,7 @@
                         <a href="{{ route('f.items', ['menu_id' => $menu->id]) }}">
                             <div class="card" style="width: 100%">
                                 <div class="card-body">
-                                    <img src="{{ $menu->image ? asset($menu->image) : asset('frontend/images/Beef-Stew-Ugali-1.jpg') }}"
+                                    <img src="{{ file_exists($menu->image) ? asset($menu->image) : asset('frontend/images/Beef-Stew-Ugali-1.jpg') }}"
                                         alt="hotel1" />
                                 </div>
                                 <div class="card-footer">

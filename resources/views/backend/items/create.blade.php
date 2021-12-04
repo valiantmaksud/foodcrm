@@ -7,16 +7,16 @@
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title">Add Item</h4>
-                            <form class="forms-sample" action="{{ route('items.store') }}" method="POST">
+                            <form class="forms-sample" action="{{ route('items.store') }}" method="POST"
+                                enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Name</label>
-                                    <input type="text" name="name" class="form-control" id="exampleInputEmail1"
-                                        placeholder="Enter name" required>
+                                    <input type="text" name="name" class="form-control" placeholder="Enter name" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Image</label>
-                                    <input type="file" name="image" class="form-control" >
+                                    <input type="file" name="image" class="form-control">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Menu</label>
