@@ -20,7 +20,7 @@
                 <button class="btn change-cart" onclick="cart(this,`{{ $menu->amount }}`,'decrease')">
                     <i class="fa fa-minus"></i>
                 </button>
-                <p id="item_quantity">1</p>
+                <p id="item_quantity" class="item_qty">1</p>
                 <button class="btn change-cart mr-4" onclick="cart(this, `{{ $menu->amount }}`,'increase')">
                     <i class="fa fa-plus"></i>
                 </button>
