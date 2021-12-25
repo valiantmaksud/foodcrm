@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Models\OrderDetail;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Order;
 
 class ReportController extends Controller
 {
@@ -26,9 +27,15 @@ class ReportController extends Controller
                 });
             })
             ->with('menu')
-            ->paginate(25);
+            ->with('order')
+            ->with('item')
+            ->get();
+        // return $data;
+
+        // $data['sales'] = Order::with('details')
+        //     ->paginate(25);
 
 
-        return view('backend.report.sales', $data);
+        return view('backend.report.sales-copy', $data);
     }
 }

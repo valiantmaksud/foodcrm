@@ -38,6 +38,11 @@
                                         value="{{ old('code', $item->code) }}" placeholder="Enter code/item id" required>
                                 </div>
                                 <div class="form-group">
+                                    <label for="exampleInputPassword1">Item Price</label>
+                                    <input type="number" name="item_cost" class="form-control"
+                                        value="{{ old('item_cost', $item->item_cost) }}" placeholder="Type cost" required>
+                                </div>
+                                <div class="form-group">
                                     <label for="exampleInputPassword1">Amount</label>
                                     <input type="number" name="amount" class="form-control"
                                         value="{{ old('amount', $item->amount) }}" placeholder="Type amount" required>

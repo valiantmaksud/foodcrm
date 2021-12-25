@@ -20,17 +20,18 @@
                                         class="form-control">
                                 </td>
                                 <td>
-                                    <input type="date" name="from" class="form-control" value="{{ request('from') }}">
+                                    <input type="date" name="from" class="form-control">
                                 </td>
                                 <td>
-                                    <input type="date" name="to" class="form-control" value="{{ request('to') }}">
+                                    <input type="date" name="to" class="form-control">
                                 </td>
                                 <td>
                                     <div class="button-group">
                                         <button class="btn btn-xs btn-success" type="submit">
                                             <i class="fa fa-search"></i> Search
                                         </button>
-                                        <a class="btn btn-xs btn-danger" href="{{ request()->url() }}">
+                                        <a class="btn btn-xs btn-danger" href="{{ request()->url() }}"
+                                            data-toggle="modal">
                                             <i class="fa fa-refresh"></i> Refresh
                                         </a>
                                     </div>
@@ -66,7 +67,7 @@
                                     <td>{{ $sale->quantity }}</td>
                                     <td>{{ $sale->total_price }}</td>
 
-
+                                </tr>
                             @endforeach
                         </tbody>
                     </table>

@@ -55,7 +55,7 @@
                 <div class="card">
                     <div class="card-header">
                         Recent 10 Orders
-                        <a href="{{ route('report.sales') }}" style="float: right;text-align:left">View All</a>
+                        <a href="{{ route('report.sales') }}" style="float: right;text-align:left">View Sale Report</a>
 
                     </div>
                     <div class="card-body">
