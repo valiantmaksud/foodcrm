@@ -1,4 +1,4 @@
-<nav class="sidebar sidebar-offcanvas" id="sidebar">
+<nav class="sidebar sidebar-offcanvas print-none" id="sidebar">
     <ul class="nav">
 
         <li class="nav-item">
@@ -7,12 +7,16 @@
                 <span class="menu-title">Dashboard</span>
             </a>
         </li>
+
+
         <li class="nav-item">
             <a class="nav-link" href="{{ route('menus.index') }}">
                 <i class="menu-icon typcn typcn-document-text"></i>
                 <span class="menu-title">Menus</span>
             </a>
         </li>
+
+
         <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false"
                 aria-controls="ui-basic">
@@ -31,18 +35,32 @@
                 </ul>
             </div>
         </li>
+
+
         <li class="nav-item">
             <a class="nav-link" href="{{ route('orders.index') }}">
                 <i class="menu-icon typcn typcn-shopping-bag"></i>
                 <span class="menu-title">Orders</span>
             </a>
         </li>
+
+
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('report.sales') }}">
+                <i class="menu-icon typcn typcn-shopping-bag"></i>
+                <span class="menu-title">Sale Report</span>
+            </a>
+        </li>
+
+
         <li class="nav-item">
             <a class="nav-link" href="{{ route('users.index') }}">
                 <i class="menu-icon typcn typcn-th-large-outline"></i>
                 <span class="menu-title">Users</span>
             </a>
         </li>
+
+
         <li class="nav-item">
             <a class="nav-link" href="{{ route('admin.logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

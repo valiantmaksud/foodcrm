@@ -8,6 +8,7 @@ use App\Http\Controllers\Backend\MenuController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Backend\AdminAuthController;
+use App\Http\Controllers\Backend\ReportController;
 use App\Http\Controllers\Frontend\ItemController as FrontendItemController;
 use App\Http\Controllers\Frontend\MenuController as FrontendMenuController;
 use App\Http\Controllers\Frontend\OrderController as FrontendOrderController;
@@ -28,6 +29,7 @@ Route::post('admin/login', [AdminAuthController::class, 'handleLogin'])
     ->name('admin.handleLogin');
 
 
+####### ADMIN ROUTE #############
 Route::group(['prefix' => 'admin', 'middleware' => ['auth:admin']], function () {
 
     Route::post('admin/logout', [AdminAuthController::class, 'logout'])
@@ -42,7 +44,16 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:admin']], function () 
     Route::resource('users', UserController::class);
 
     Route::post('order/{id}/status', [OrderController::class, 'statusUpdate'])->name('order.status');
+
+
+    Route::get('reports/sales', [ReportController::class, 'saleReport'])->name('report.sales');
 });
+
+
+
+
+####### FRONTEND ROUTE #############
+
 
 Route::get('/', function () {
     return view('frontend.index');

@@ -51,34 +51,43 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-8 grid-margin stretch-card">
+            <div class="col-md-10 grid-margin stretch-card">
                 <div class="card">
-                    <div class="card-bodsy">
+                    <div class="card-header">
+                        Recent 10 Orders
+                        <a href="{{ route('report.sales') }}" style="float: right;text-align:left">View All</a>
+
+                    </div>
+                    <div class="card-body">
                         <div class="row">
-                            <div class="col-md-6 grid-margin stretch-card">
-                                <div class="card">
-                                    <div class="card-body pb-0">
-                                        <div class="d-flex justify-content-between">
-                                            <h4 class="card-title mb-0">Total Revenue</h4>
-                                            <p class="font-weight-semibold mb-0">0</p>
-                                        </div>
-                                        <h3 class="font-weight-medium mb-4">0</h3>
-                                    </div>
-                                    <canvas class="mt-n4" height="90" id="total-revenue"></canva>
-                                </div>
-                            </div>
-                            <div class="col-md-6 grid-margin stretch-card">
-                                <div class="card">
-                                    <div class="card-body pb-0">
-                                        <div class="d-flex justify-content-between">
-                                            <h4 class="card-title mb-0">Transaction</h4>
-                                            <p class="font-weight-semibold mb-0">0</p>
-                                        </div>
-                                        <h3 class="font-weight-medium">0</h3>
-                                    </div>
-                                    <canvas class="mt-n3" height="90" id="total-transaction"></canva>
-                                </div>
-                            </div>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Sl</th>
+                                        <th>Item</th>
+                                        <th>Menu</th>
+                                        <th>Date</th>
+                                        <th>Item Price</th>
+                                        <th>Quantity</th>
+                                        <th>Total Amount</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($sales ?? [] as $sale)
+                                        <tr>
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ optional($sale->item)->name }}</td>
+                                            <td>{{ optional($sale->menu)->name }}</td>
+                                            <td>{{ optional($sale->order)->order_date }}</td>
+                                            <td>{{ $sale->unit_price }}</td>
+                                            <td>{{ $sale->quantity }}</td>
+                                            <td>{{ $sale->total_price }}</td>
+
+
+                                    @endforeach
+                                </tbody>
+                            </table>
+
                         </div>
                     </div>
                 </div>
