@@ -23,10 +23,11 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Menu</label>
+                                    {{-- @dd($item->menu_id) --}}
                                     <select name="menu_id" class="form-control" required>
                                         @foreach ($menus as $menu)
-                                            <option
-                                                value="{{ old('menu_id', $menu->id) }} {{ $menu->id == $item->menu_id ? 'selected' : '' }}">
+                                            <option value="{{ old('menu_id', $menu->id) }}"
+                                                {{ $menu->id == $item->menu_id ? 'selected' : '' }}>
                                                 {{ $menu->name }}
                                             </option>
                                         @endforeach
