@@ -63,6 +63,9 @@
                                 <p class="text-right"><b> Date : </b>
                                     {{ $order->order_date }}
                                 </p>
+                                <p class="text-right"><b> Status : </b>
+                                    {{ $order->status }}
+                                </p>
                             </div>
 
                         </div>

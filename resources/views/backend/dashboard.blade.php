@@ -65,7 +65,6 @@
                                     <tr>
                                         <th>Sl</th>
                                         <th>Item</th>
-                                        <th>Menu</th>
                                         <th>Date</th>
                                         <th>Item Price</th>
                                         <th>Quantity</th>
@@ -77,7 +76,6 @@
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ optional($sale->item)->name }}</td>
-                                            <td>{{ optional($sale->menu)->name }}</td>
                                             <td>{{ optional($sale->order)->order_date }}</td>
                                             <td>{{ $sale->unit_price }}</td>
                                             <td>{{ $sale->quantity }}</td>

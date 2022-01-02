@@ -48,7 +48,6 @@
                             <tr>
                                 <th>Sl</th>
                                 <th>Item</th>
-                                <th>Menu</th>
                                 <th>Date</th>
                                 <th>Total Delivered</th>
                                 <th>Total Pending</th>
@@ -65,32 +64,43 @@
                                 $grand_total_profit = 0;
                             @endphp
 
-                            @foreach ($sales->groupBy('item_id') ?? [] as $key => $sale)
-                                {{-- @dd($sale, $sale->withSum('order')) --}}
+                            @foreach ($items ?? [] as $key => $item)
+                                {{-- @dd($item->order_details) --}}
 
                                 @php
-                                    $grand_total_delivered += $total_delivered = optional($sale)
-                                        ->order->where('status', 'completed')
-                                        ->sum('total_amount');
-                                    $grand_total_pending += $total_pending = optional($sale->order)
-                                        ->where('status', 'pending')
-                                        ->sum('total_amount');
-                                    $grand_total_cancelled += $total_cancelled = optional($sale->order)
-                                        ->where('status', 'cancelled')
-                                        ->sum('total_amount');
-                                    $grand_total_profit += $total_profit = $sale[$key]->unit_price - optional($sale[$key]->item)->item_cost;
+                                    $total_delivered = $total_pending = $total_cancelled = 0;
+                                    foreach ($item->order_details as $key => $detail) {
+                                        if ($detail->order->status == 'completed') {
+                                            $total_delivered += $detail->order->total_amount;
+                                        }
+                                        if ($detail->order->status == 'pending') {
+                                            $total_pending += $detail->order->total_amount;
+                                        }
+                                        if ($detail->order->status == 'cancel') {
+                                            $total_cancelled += $detail->order->total_amount;
+                                        }
+                                        // $total_delivered += $detail->order->where('status', 'completed')->sum('total_amount');
+                                        // $total_pending += $detail->order->where('status', 'pending')->sum('total_amount');
+                                        // $total_cancelled += $detail->order->where('status', 'cancel')->sum('total_amount');
+                                    }
+                                    
+                                    $grand_total_delivered += $total_delivered;
+                                    $grand_total_pending += $total_pending;
+                                    $grand_total_cancelled += $total_cancelled;
+                                    
+                                    $grand_total_profit += $total_profit = $total_delivered - ($total_pending + $total_cancelled) > 0 ? $total_delivered - ($total_pending + $total_cancelled) : 0;
                                     
                                 @endphp
 
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ optional($sale[$key]->item)->name }}</td>
-                                    <td>{{ optional($sale[$key]->menu)->name }}</td>
-                                    <td>{{ optional($sale[$key]->order)->order_date }}</td>
+                                    <td>{{ $item->name }}</td>
+                                    <td>{{ $item->order_details->last()->order->order_date }}</td>
                                     <td>{{ $total_delivered }}</td>
                                     <td>{{ $total_pending }}</td>
                                     <td>{{ $total_cancelled }}</td>
                                     <td>{{ $total_profit }}</td>
+
 
                                 </tr>
                             @endforeach
@@ -98,7 +108,7 @@
 
                         <tfoot>
                             <tr>
-                                <th colspan="4">
+                                <th colspan="3">
                                     Total Summary
                                 </th>
                                 <th>{{ $grand_total_delivered }}</th>
